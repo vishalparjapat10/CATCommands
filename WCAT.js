@@ -66,6 +66,7 @@ if (isSPresent) {
 }
 
 contentArr = tempArr;
+console.log("Content Arr is :-");
 console.log(contentArr);
 
 let indexOfN = optionsArr.indexOf("-n");
@@ -94,6 +95,7 @@ else{
 }
 
 // calling of funtions by evaluating finalOption
+// either -n will be implemneted or -b, both at the same time will not make sense
 if(finalOption == "-n"){
     modifyContentByN();
 }
@@ -102,9 +104,20 @@ else if(finalOption == "-b"){
 }
 
 function modifyContentByN(){
-
+    for(let i = 0;i < contentArr.length;i++){
+        contentArr[i] = (i+1) + ")" + contentArr[i];
+    }
 }
 
 function modifyContentByB(){
-    
+    let count = 1;
+    for(let i = 1;i < contentArr.length;i++){
+        if(contentArr[i] != ""){
+            contentArr[i] = count + ") " + contentArr[i];
+            count++;
+        }
+        
+    }
 }
+
+console.log(contentArr);
