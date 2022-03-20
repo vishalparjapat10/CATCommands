@@ -1,9 +1,5 @@
 const fs = require('fs');
 
-// Below commands are implemented:-
-// 1) node wcat.js filepath => displays the contents of a file in terminal
-// 2) node wcat.js filepat1 filepath2 filepath3 => displays the contents of all files in terminal in concatenated form in given order
-// 3) node wcat.js -n file1 file2 file3 OR node wcat.js -n file => this command will give the numbers to each line of code
 let inputArr = process.argv.slice(2);// we are taking content from 2nd index so that first 2 (address of node & address of wcat) can be skipped and we can get our only input 
 
 let filesArr = [];
@@ -26,7 +22,6 @@ for(let i = 0;i < filesArr.length;i++){
     let doesExist = fs.existsSync(filesArr[i])// it takes path of file and tells whether the files exists or not
     if(!doesExist){
         console.log(`${filesArr[i]} file does not exist`);
-        // return;
         process.exit();
     }
 }
@@ -36,10 +31,8 @@ for(let i = 0;i < filesArr.length;i++){
     let fileContent = fs.readFileSync(filesArr[i]);
     content += fileContent + "\r\n";
 }
-// console.log(content);
 
 let contentArr = content.split("\r\n");
-console.table(contentArr);
 console.log(contentArr);
 
 // check if -s is present or not
@@ -54,7 +47,6 @@ if (isSPresent) {
             contentArr[i] = null;
         }
     }
-    // console.table(contentArr);
     
     //push everything in tempArr except null
     for (let i = 0; i < contentArr.length; i++){
@@ -62,12 +54,13 @@ if (isSPresent) {
             tempArr.push(contentArr[i]);
         }
     }
-    // console.log("data after removing extra lines\n",tempArr);
+    contentArr = tempArr;
 }
 
-contentArr = tempArr;
-console.log("Content Arr is :-");
-console.log(contentArr);
+
+if(isSPresent){
+    console.log(contentArr);
+}
 
 let indexOfN = optionsArr.indexOf("-n");
 let indexOfB = optionsArr.indexOf("-b");
@@ -111,7 +104,7 @@ function modifyContentByN(){
 
 function modifyContentByB(){
     let count = 1;
-    for(let i = 1;i < contentArr.length;i++){
+    for(let i = 0;i < contentArr.length;i++){
         if(contentArr[i] != ""){
             contentArr[i] = count + ") " + contentArr[i];
             count++;
@@ -120,4 +113,6 @@ function modifyContentByB(){
     }
 }
 
-console.log(contentArr);
+if(optionsArr.includes("-n") || optionsArr.includes("-b")){
+    console.log(contentArr);
+}
