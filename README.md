@@ -16,6 +16,7 @@ Commands:
 <br>3- node wcat.js -s filepath => convert big line breaks into a singular line break
 <br>4- node wcat.js -n filepath => give numbering to all the lines
 <br>5- node wcat -b filepath => give numbering to non-empty lines
+<br>6- node wcat -e filepath => ‘$‘ is shown at the end of the line 
 <br>We can mix and match the options.
 
 Edge cases:
