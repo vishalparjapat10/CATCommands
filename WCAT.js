@@ -62,6 +62,19 @@ if(isSPresent){
     console.log(contentArr);
 }
 
+// check if -e is present 
+let isEpresent = optionsArr.includes('-e');
+if(isEpresent){
+    for(let i = 0;i < contentArr.length;i++){
+        if(contentArr[i] != ''){
+            contentArr[i] = contentArr[i] + "$";
+        }
+    }
+}
+
+if(isEpresent){
+    console.log(contentArr);
+}
 let indexOfN = optionsArr.indexOf("-n");
 let indexOfB = optionsArr.indexOf("-b");
 // if -n or -b is not found, -1 is returned
